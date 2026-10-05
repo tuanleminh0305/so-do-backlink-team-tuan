@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
+<title>Sơ đồ backlink FHome</title>
+<style>body{margin:0}*,*::before,*::after{box-sizing:border-box}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: một canvas SVG cuộn ngang, tầng ghi ở lề trái, money trên cùng, vòng 08 phía dưới */
+:root{
+  --bg:#F3F6FA; --panel:#FFFFFF; --band:#E8EEF6; --line:#C5D0DE;
+  --ink:#15243B; --muted:#5D6B7E;
+  --navy:#17335E; --main-fill:#17335E; --main-ink:#FFFFFF; --main-sub:#B9CBE6;
+  --chain:#2F86C4; --risk:#C1442E; --risk-bg:#FCEFEC; --ent:#8C98A9; --pill-tool:#E3F0FA;
+  --font:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E1622; --panel:#162234; --band:#13202F; --line:#2D3E55;
+  --ink:#E4EBF4; --muted:#9AA9BC;
+  --navy:#8DB2EA; --main-fill:#24508F; --main-ink:#FFFFFF; --main-sub:#C9D9F2;
+  --chain:#5BAAE3; --risk:#EE7A63; --risk-bg:#2A1B1A; --ent:#7D8BA0; --pill-tool:#1B3550; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1622; --panel:#162234; --band:#13202F; --line:#2D3E55;
+  --ink:#E4EBF4; --muted:#9AA9BC;
+  --navy:#8DB2EA; --main-fill:#24508F; --main-ink:#FFFFFF; --main-sub:#C9D9F2;
+  --chain:#5BAAE3; --risk:#EE7A63; --risk-bg:#2A1B1A; --ent:#7D8BA0; --pill-tool:#1B3550; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--font)}
+.wrap{max-width:1500px;margin:0 auto;padding-inline:16px;padding-block:28px 40px}
+h1{font-size:1.45rem;font-weight:700;margin:0 0 4px;text-wrap:balance}
+.sub{color:var(--muted);margin:0 0 18px;font-size:.92rem}
+.canvas{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px}
+svg.dg{display:block;width:100%;min-width:1100px;height:auto}
+.dg text{font-family:var(--font)}
+.lb-tier{font-size:15px;font-weight:700;letter-spacing:.08em;fill:var(--ink)}
+.lb-sub{font-size:12.5px;fill:var(--muted)}
+.band{fill:var(--band)} .band-tx{font-size:11px;font-weight:700;letter-spacing:.1em;fill:var(--muted)}
+.panel{fill:var(--band)}
+.node-money{fill:var(--panel);stroke:var(--navy);stroke-width:1.6}
+.node-main{fill:var(--main-fill)}
+.node-asset{fill:var(--panel);stroke:var(--line);stroke-width:1.4}
+.node-gp{fill:var(--panel);stroke:var(--navy);stroke-width:1.2;stroke-dasharray:0}
+.node-risk{fill:var(--risk-bg);stroke:var(--risk);stroke-width:1.4}
+.node-dash{stroke-dasharray:6 5}
+.node-ent{fill:var(--panel);stroke:var(--line);stroke-width:1.2}
+.q-eye,.e-eye{font-size:11px;font-weight:700;letter-spacing:.1em;fill:var(--muted)}
+.q-name{font-size:15px;font-weight:600;fill:var(--ink)}
+.q-slug,.m-slug{font-family:var(--mono)!important;font-size:11px;fill:var(--muted)}
+.q-meta{font-size:11.5px;fill:var(--muted)}
+.m-eye{font-size:11px;font-weight:700;letter-spacing:.1em;fill:var(--main-sub)}
+.m-name{font-size:15px;font-weight:600;fill:var(--main-ink)}
+.m-slug{fill:var(--main-sub)} .m-meta{font-size:11.5px;fill:var(--main-sub)}
+.a-name{font-size:13.5px;font-weight:600;fill:var(--ink)}
+.a-dom{font-family:var(--mono)!important;font-size:10.5px;fill:var(--muted)}
+.a-dr{font-size:11px;font-weight:600;fill:var(--chain)}
+.gp-row{font-size:12.5px;fill:var(--ink)} .gp-to{font-size:12px;font-weight:600;fill:var(--navy)}
+.r-eye{font-size:11.5px;font-weight:700;letter-spacing:.08em;fill:var(--risk)} .r-sub{font-size:12px;fill:var(--ink)}
+.method-tag{font-size:15px;font-weight:700;letter-spacing:.06em;fill:var(--navy)}
+.w-name{font-size:12.5px;font-weight:600;fill:var(--ink)} .w-sub{font-size:10.5px;fill:var(--muted)}
+.pill{stroke-width:1}.pill-tool{fill:var(--pill-tool);stroke:var(--chain)}.pill-site{fill:var(--panel);stroke:var(--navy)}.pill-blog{fill:var(--panel);stroke:var(--muted);stroke-dasharray:3 3}
+.pill-tx{font-size:9.5px;font-weight:700;letter-spacing:.08em;fill:var(--ink)}
+.w-kind{font-size:9.5px;font-weight:700;letter-spacing:.08em;fill:var(--chain)}
+.ent-kind{font-size:9.5px;font-weight:700;letter-spacing:.08em;fill:var(--muted)}
+.ent-tx{font-size:12.5px;font-weight:500;fill:var(--ink)}
+.edge-back{fill:none;stroke:var(--navy);stroke-width:1.8}
+.edge-hub{stroke-width:2.4}
+.edge-chain{fill:none;stroke:var(--chain);stroke-width:1.6}
+.edge-spoke{stroke:var(--chain);stroke-width:1.6}
+.edge-risk{fill:none;stroke:var(--risk);stroke-width:1.5}
+.edge-dash{stroke-dasharray:6 5}
+.edge-ent{fill:none;stroke:var(--ent);stroke-width:1.5;stroke-dasharray:5 5}
+.ah-back{fill:var(--navy)} .ah-chain{fill:var(--chain)} .ah-risk{fill:var(--risk)} .ah-ent{fill:var(--ent)}
+.dot{stroke:var(--panel);stroke-width:1}
+.dot-gs{fill:#4285F4}.dot-vercel{fill:#111111}.dot-firebase{fill:#FFA000}.dot-github{fill:#24292F}
+.dot-cloudflare{fill:#F38020}.dot-wix{fill:#3A3A3A}.dot-webflow{fill:#4353FF}.dot-substack{fill:#FF6719}
+.dot-strikingly{fill:#27AE60}.dot-tumblr{fill:#36465D}.dot-canva{fill:#00C4CC}.dot-pinterest{fill:#E60023}
+.dot-aboutme{fill:#5A5A5A}.dot-homify{fill:#F2A900}.dot-houzz{fill:#4DBC15}.dot-chatgpt{fill:#10A37F}
+:root[data-theme="dark"] .dot-vercel,:root[data-theme="dark"] .dot-github,:root[data-theme="dark"] .dot-wix,:root[data-theme="dark"] .dot-tumblr,:root[data-theme="dark"] .dot-aboutme{fill:#D9E1EC}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .dot-vercel,:root:not([data-theme="light"]) .dot-github,:root:not([data-theme="light"]) .dot-wix,:root:not([data-theme="light"]) .dot-tumblr,:root:not([data-theme="light"]) .dot-aboutme{fill:#D9E1EC}}
+.hint{color:var(--muted);font-size:.82rem;margin:8px 0 0}
+.legend{list-style:none;padding:0;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:10px 26px;font-size:.88rem}
+.legend li{display:flex;align-items:center;gap:10px;min-width:0}
+.legend svg{flex:none}
+.lg-back{stroke:var(--navy);stroke-width:2.2} .lg-chain{stroke:var(--chain);stroke-width:2}
+.lg-risk{stroke:var(--risk);stroke-width:2} .lg-ent{stroke:var(--ent);stroke-width:2;stroke-dasharray:5 4}
+.lg-pills{font-size:.72rem;font-weight:700;letter-spacing:.06em;border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--muted)}
+.lg-main{fill:var(--main-fill)}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>Sơ đồ backlink FHome</h1>
+  <p class="sub">DAS · 08 method · textlink · guest post — 4 URL đích · bản ý tưởng 05/10/2026</p>
+  <div class="canvas">
+    <svg class="dg" viewBox="0 -100 1900 1820" role="img" aria-labelledby="dg-t">
+      <title id="dg-t">Sơ đồ backlink FHome: DAS 8 tài sản, 5 guest post, textlink, hai vòng 08 method Strikingly và Tumblr, textlink gần theme thẳng money và xa theme vào guest post, ChatGPT App trỏ trang chủ, entity</title>
+      <defs>
+        <marker id="ar-back" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path class="ah-back" d="M0,.6 L9.6,5 L0,9.4 Z"/></marker>
+        <marker id="ar-chain" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path class="ah-chain" d="M0,.6 L9.6,5 L0,9.4 Z"/></marker>
+        <marker id="ar-risk" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path class="ah-risk" d="M0,.6 L9.6,5 L0,9.4 Z"/></marker>
+        <marker id="ar-ent" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path class="ah-ent" d="M0,.6 L9.6,5 L0,9.4 Z"/></marker>
+      </defs>
+<text class="lb-tier" x="16.0" y="-56.0" text-anchor="start">TEXTLINK</text>
+<text class="lb-sub" x="16.0" y="-36.0" text-anchor="start">gần theme → money</text>
+<text class="lb-tier" x="16.0" y="84.0" text-anchor="start">TẦNG ĐÍCH</text>
+<text class="lb-sub" x="16.0" y="104.0" text-anchor="start">money site · 4</text>
+<text class="lb-tier" x="16.0" y="340.0" text-anchor="start">TIER 1</text>
+<text class="lb-sub" x="16.0" y="360.0" text-anchor="start">DAS + guest post</text>
+<text class="lb-tier" x="16.0" y="548.0" text-anchor="start">TIER 2</text>
+<text class="lb-sub" x="16.0" y="568.0" text-anchor="start">textlink xa theme</text>
+<text class="lb-tier" x="16.0" y="770.0" text-anchor="start">08 METHOD</text>
+<text class="lb-sub" x="16.0" y="790.0" text-anchor="start">2 vòng · 1 link/vòng</text>
+<text class="lb-tier" x="16.0" y="1586.0" text-anchor="start">ENTITY</text>
+<text class="lb-sub" x="16.0" y="1606.0" text-anchor="start">ngoài đường juice</text>
+<rect class="node-main" x="400" y="40" width="320" height="104" rx="12"/>
+<text class="m-eye" x="560.0" y="66.0" text-anchor="middle">M1 · URL CHÍNH</text>
+<text class="m-name" x="560.0" y="92.0" text-anchor="middle">Thi công nội thất chung cư</text>
+<text class="m-slug" x="560.0" y="114.0" text-anchor="middle">/thi-cong-noi-that-chung-cu/</text>
+<text class="m-meta" x="560.0" y="134.0" text-anchor="middle">fhomesg.vn · 7 nguồn</text>
+<rect class="node-money" x="780" y="40" width="320" height="104" rx="12"/>
+<text class="q-eye" x="940.0" y="66.0" text-anchor="middle">M2</text>
+<text class="q-name" x="940.0" y="92.0" text-anchor="middle">Thiết kế nội thất chung cư</text>
+<text class="q-slug" x="940.0" y="114.0" text-anchor="middle">/thiet-ke-noi-that-chung-cu/</text>
+<text class="q-meta" x="940.0" y="134.0" text-anchor="middle">fhomesg.vn · 5 nguồn</text>
+<rect class="node-money" x="1160" y="40" width="320" height="104" rx="12"/>
+<text class="q-eye" x="1320.0" y="66.0" text-anchor="middle">M3</text>
+<text class="q-name" x="1320.0" y="92.0" text-anchor="middle">Thiết kế NT chung cư 3 phòng ngủ</text>
+<text class="q-slug" x="1320.0" y="114.0" text-anchor="middle">/thiet-ke-noi-that-chung-cu/3-phong-ngu/</text>
+<text class="q-meta" x="1320.0" y="134.0" text-anchor="middle">fhomesg.vn · 3 nguồn</text>
+<rect class="node-money" x="1540" y="40" width="320" height="104" rx="12"/>
+<text class="q-eye" x="1700.0" y="66.0" text-anchor="middle">M4</text>
+<text class="q-name" x="1700.0" y="92.0" text-anchor="middle">Báo giá thiết kế thi công NT chung cư</text>
+<text class="q-slug" x="1700.0" y="114.0" text-anchor="middle">/gia-thiet-ke-thi-cong-noi-that-chung-cu/</text>
+<text class="q-meta" x="1700.0" y="134.0" text-anchor="middle">fhomesg.vn · 3 nguồn</text>
+<rect class="band" x="430" y="262" width="1450" height="152" rx="16"/>
+<text class="band-tx" x="446.0" y="282.0" text-anchor="start">DAS · 8 TÀI SẢN</text>
+<rect class="node-asset" x="440" y="300" width="140" height="96" rx="12"/>
+<circle class="dot dot-gs" cx="464" cy="321" r="6"/>
+<rect class="pill pill-site" x="476" y="311" width="86" height="20" rx="10"/>
+<text class="pill-tx" x="519.0" y="325.0" text-anchor="middle">MINISITE</text>
+<text class="a-name" x="510.0" y="350.0" text-anchor="middle">Google Sites</text>
+<text class="a-dom" x="510.0" y="370.0" text-anchor="middle">sites.google.com</text>
+<text class="a-dr" x="510.0" y="388.0" text-anchor="middle">DR 100</text>
+<rect class="node-asset" x="630" y="300" width="140" height="96" rx="12"/>
+<circle class="dot dot-vercel" cx="654" cy="321" r="6"/>
+<rect class="pill pill-tool" x="666" y="311" width="86" height="20" rx="10"/>
+<text class="pill-tx" x="709.0" y="325.0" text-anchor="middle">MINI TOOL</text>
+<text class="a-name" x="700.0" y="350.0" text-anchor="middle">Vercel</text>
+<text class="a-dom" x="700.0" y="370.0" text-anchor="middle">vercel.app</text>
+<text class="a-dr" x="700.0" y="388.0" text-anchor="middle">DR 93</text>
+<rect class="node-asset" x="810" y="300" width="140" height="96" rx="12"/>
+<circle class="dot dot-firebase" cx="834" cy="321" r="6"/>
+<rect class="pill pill-tool" x="846" y="311" width="86" height="20" rx="10"/>
+<text class="pill-tx" x="889.0" y="325.0" text-anchor="middle">MINI TOOL</text>
+<text class="a-name" x="880.0" y="350.0" text-anchor="middle">Firebase</text>
+<text class="a-dom" x="880.0" y="370.0" text-anchor="middle">web.app</text>
+<text class="a-dr" x="880.0" y="388.0" text-anchor="middle">DR 91</text>
+<rect class="node-asset" x="990" y="300" width="140" height="96" rx="12"/>
+<circle class="dot dot-github" cx="1014" cy="321" r="6"/>
+<rect class="pill pill-tool" x="1026" y="311" width="86" height="20" rx="10"/>
+<text class="pill-tx" x="1069.0" y="325.0" text-anchor="middle">MINI TOOL</text>
+<text class="a-name" x="1060.0" y="350.0" text-anchor="middle">GitHub Pages</text>
+<text class="a-dom" x="1060.0" y="370.0" text-anchor="middle">github.io</text>
+<text class="a-dr" x="1060.0" y="388.0" text-anchor="middle">DR 94</text>
+<rect class="node-asset" x="1180" y="300" width="140" height="96" rx="12"/>
+<circle class="dot dot-cloudflare" cx="1204" cy="321" r="6"/>
+<rect class="pill pill-tool" x="1216" y="311" width="86" height="20" rx="10"/>
+<text class="pill-tx" x="1259.0" y="325.0" text-anchor="middle">MINI TOOL</text>
+<text class="a-name" x="1250.0" y="350.0" text-anchor="middle">Cloudflare Pages</text>
+<text class="a-dom" x="1250.0" y="370.0" text-anchor="middle">pages.dev</text>
+<text class="a-dr" x="1250.0" y="388.0" text-anchor="middle">DR 93</text>
+<rect class="node-asset" x="1360" y="300" width="140" height="96" rx="12"/>
+<circle class="dot dot-wix" cx="1384" cy="321" r="6"/>
+<rect class="pill pill-site" x="1396" y="311" width="86" height="20" rx="10"/>
+<text class="pill-tx" x="1439.0" y="325.0" text-anchor="middle">MINISITE</text>
+<text class="a-name" x="1430.0" y="350.0" text-anchor="middle">Wix</text>
+<text class="a-dom" x="1430.0" y="370.0" text-anchor="middle">wixsite.com</text>
+<text class="a-dr" x="1430.0" y="388.0" text-anchor="middle">DR 94</text>
+<rect class="node-asset" x="1550" y="300" width="140" height="96" rx="12"/>
+<circle class="dot dot-webflow" cx="1574" cy="321" r="6"/>
+<rect class="pill pill-site" x="1586" y="311" width="86" height="20" rx="10"/>
+<text class="pill-tx" x="1629.0" y="325.0" text-anchor="middle">MINISITE</text>
+<text class="a-name" x="1620.0" y="350.0" text-anchor="middle">Webflow</text>
+<text class="a-dom" x="1620.0" y="370.0" text-anchor="middle">webflow.io</text>
+<text class="a-dr" x="1620.0" y="388.0" text-anchor="middle">DR 92</text>
+<rect class="node-asset" x="1730" y="300" width="140" height="96" rx="12"/>
+<circle class="dot dot-substack" cx="1754" cy="321" r="6"/>
+<rect class="pill pill-blog" x="1766" y="311" width="86" height="20" rx="10"/>
+<text class="pill-tx" x="1809.0" y="325.0" text-anchor="middle">BLOG</text>
+<text class="a-name" x="1800.0" y="350.0" text-anchor="middle">Substack</text>
+<text class="a-dom" x="1800.0" y="370.0" text-anchor="middle">substack.com</text>
+<text class="a-dr" x="1800.0" y="388.0" text-anchor="middle">DR 94</text>
+<rect class="node-gp" x="180" y="276" width="230" height="138" rx="12"/>
+<text class="e-eye" x="196.0" y="300.0" text-anchor="start">GUEST POST CÓ SẴN</text>
+<text class="gp-row" x="196.0" y="322.0" text-anchor="start">24h (PR)</text>
+<text class="gp-to" x="394.0" y="322.0" text-anchor="end">→ M1</text>
+<text class="gp-row" x="196.0" y="341.0" text-anchor="start">binhduongreview</text>
+<text class="gp-to" x="394.0" y="341.0" text-anchor="end">→ M1</text>
+<text class="gp-row" x="196.0" y="360.0" text-anchor="start">noithattana</text>
+<text class="gp-to" x="394.0" y="360.0" text-anchor="end">→ M1</text>
+<text class="gp-row" x="196.0" y="379.0" text-anchor="start">toancauinvest</text>
+<text class="gp-to" x="394.0" y="379.0" text-anchor="end">→ M2</text>
+<text class="gp-row" x="196.0" y="398.0" text-anchor="start">chungcu365</text>
+<text class="gp-to" x="394.0" y="398.0" text-anchor="end">→ M2 · M3</text>
+<path class="edge-back" d="M220,276 C220,201 440,232 440,152" marker-end="url(#ar-back)"/>
+<path class="edge-back" d="M290,276 C290,201 820,232 820,152" marker-end="url(#ar-back)"/>
+<path class="edge-back" d="M360,276 C360,201 1200,232 1200,152" marker-end="url(#ar-back)"/>
+<path class="edge-back" d="M510,300 C510,225 520,232 520,152" marker-end="url(#ar-back)"/>
+<path class="edge-back" d="M700,300 C700,225 600,232 600,152" marker-end="url(#ar-back)"/>
+<path class="edge-back" d="M880,300 C880,225 680,232 680,152" marker-end="url(#ar-back)"/>
+<path class="edge-back" d="M1060,300 C1060,225 900,232 900,152" marker-end="url(#ar-back)"/>
+<path class="edge-back" d="M1800,300 C1800,225 1060,232 1060,152" marker-end="url(#ar-back)"/>
+<path class="edge-back" d="M1250,300 C1250,225 1280,232 1280,152" marker-end="url(#ar-back)"/>
+<path class="edge-back" d="M1430,300 C1430,225 1400,232 1400,152" marker-end="url(#ar-back)"/>
+<path class="edge-back" d="M1620,300 C1620,225 1600,232 1600,152" marker-end="url(#ar-back)"/>
+<path class="edge-back" d="M910,300 C910,225 1680,232 1680,152" marker-end="url(#ar-back)"/>
+<path class="edge-back" d="M1830,300 C1830,225 1800,232 1800,152" marker-end="url(#ar-back)"/>
+<line class="edge-chain" x1="580" y1="348" x2="628" y2="348" marker-end="url(#ar-chain)"/>
+<line class="edge-chain" x1="1130" y1="348" x2="1178" y2="348" marker-end="url(#ar-chain)"/>
+<line class="edge-chain" x1="1500" y1="348" x2="1548" y2="348" marker-end="url(#ar-chain)"/>
+<rect class="node-risk" x="180" y="500" width="230" height="76" rx="12"/>
+<text class="r-eye" x="295.0" y="526.0" text-anchor="middle">TEXTLINK XA THEME · T2</text>
+<text class="r-sub" x="295.0" y="548.0" text-anchor="middle">→ GP noithattana</text>
+<text class="r-sub" x="295.0" y="566.0" text-anchor="middle">→ GP toancauinvest</text>
+<path class="edge-risk" d="M295,500 V424" marker-end="url(#ar-risk)"/>
+<rect class="node-risk" x="180" y="-82" width="380" height="62" rx="12"/>
+<text class="r-eye" x="370.0" y="-58.0" text-anchor="middle">TEXTLINK GẦN THEME · THẲNG MONEY</text>
+<text class="r-sub" x="370.0" y="-36.0" text-anchor="middle">dạng 1 · URL bài đúng chủ đề · chia đều 4 URL</text>
+<rect class="node-risk" x="498" y="-6" width="124" height="24" rx="12"/>
+<text class="r-eye" x="560.0" y="10.0" text-anchor="middle">+ textlink</text>
+<path class="edge-risk" d="M560,18 V34" marker-end="url(#ar-risk)"/>
+<rect class="node-risk" x="878" y="-6" width="124" height="24" rx="12"/>
+<text class="r-eye" x="940.0" y="10.0" text-anchor="middle">+ textlink</text>
+<path class="edge-risk" d="M940,18 V34" marker-end="url(#ar-risk)"/>
+<rect class="node-risk" x="1258" y="-6" width="124" height="24" rx="12"/>
+<text class="r-eye" x="1320.0" y="10.0" text-anchor="middle">+ textlink</text>
+<path class="edge-risk" d="M1320,18 V34" marker-end="url(#ar-risk)"/>
+<rect class="node-risk" x="1638" y="-6" width="124" height="24" rx="12"/>
+<text class="r-eye" x="1700.0" y="10.0" text-anchor="middle">+ textlink</text>
+<path class="edge-risk" d="M1700,18 V34" marker-end="url(#ar-risk)"/>
+<circle class="panel" cx="560" cy="1060" r="300"/>
+<text class="method-tag" x="260.0" y="744.0" text-anchor="start">VÒNG 08 A · STRIKINGLY</text>
+<text class="w-sub" x="260.0" y="764.0" text-anchor="start">→ M1 thi công</text>
+<path class="edge-chain" d="M457.0,867.4 Q560.0,730.0 662.4,866.6" marker-end="url(#ar-chain)"/>
+<path class="edge-chain" d="M752.6,957.0 Q890.0,1060.0 753.4,1162.4" marker-end="url(#ar-chain)"/>
+<path class="edge-chain" d="M663.0,1252.6 Q560.0,1390.0 457.6,1253.4" marker-end="url(#ar-chain)"/>
+<path class="edge-chain" d="M367.4,1163.0 Q230.0,1060.0 366.6,957.6" marker-end="url(#ar-chain)"/>
+<line class="edge-spoke" x1="463.8" y1="963.8" x2="492.1" y2="992.1" marker-end="url(#ar-chain)"/>
+<line class="edge-spoke" x1="656.2" y1="963.8" x2="627.9" y2="992.1" marker-end="url(#ar-chain)"/>
+<line class="edge-spoke" x1="656.2" y1="1156.2" x2="627.9" y2="1127.9" marker-end="url(#ar-chain)"/>
+<line class="edge-spoke" x1="463.8" y1="1156.2" x2="492.1" y2="1127.9" marker-end="url(#ar-chain)"/>
+<circle class="node-asset" cx="418.6" cy="918.6" r="62"/>
+<circle class="dot dot-strikingly" cx="418.6" cy="888.6" r="5.5"/>
+<text class="w-name" x="418.6" y="920.6" text-anchor="middle">Nút ngoài 1</text>
+<text class="w-sub" x="418.6" y="938.6" text-anchor="middle">T2 · mystrikingly.com</text>
+<text class="w-kind" x="418.6" y="956.6" text-anchor="middle">MINISITE</text>
+<circle class="node-asset" cx="701.4" cy="918.6" r="62"/>
+<circle class="dot dot-strikingly" cx="701.4" cy="888.6" r="5.5"/>
+<text class="w-name" x="701.4" y="920.6" text-anchor="middle">Nút ngoài 2</text>
+<text class="w-sub" x="701.4" y="938.6" text-anchor="middle">T2 · mystrikingly.com</text>
+<text class="w-kind" x="701.4" y="956.6" text-anchor="middle">MINISITE</text>
+<circle class="node-asset" cx="701.4" cy="1201.4" r="62"/>
+<circle class="dot dot-strikingly" cx="701.4" cy="1171.4" r="5.5"/>
+<text class="w-name" x="701.4" y="1203.4" text-anchor="middle">Nút ngoài 3</text>
+<text class="w-sub" x="701.4" y="1221.4" text-anchor="middle">T2 · mystrikingly.com</text>
+<text class="w-kind" x="701.4" y="1239.4" text-anchor="middle">MINISITE</text>
+<circle class="node-asset" cx="418.6" cy="1201.4" r="62"/>
+<circle class="dot dot-strikingly" cx="418.6" cy="1171.4" r="5.5"/>
+<text class="w-name" x="418.6" y="1203.4" text-anchor="middle">Nút ngoài 4</text>
+<text class="w-sub" x="418.6" y="1221.4" text-anchor="middle">T2 · mystrikingly.com</text>
+<text class="w-kind" x="418.6" y="1239.4" text-anchor="middle">MINISITE</text>
+<circle class="node-main" cx="560" cy="1060" r="92"/>
+<text class="m-eye" x="560.0" y="1040.0" text-anchor="middle">NÚT GIỮA · T1 · MINISITE</text>
+<text class="m-name" x="560.0" y="1068.0" text-anchor="middle">mystrikingly.com</text>
+<text class="m-meta" x="560.0" y="1092.0" text-anchor="middle">1 link → M1</text>
+<circle class="panel" cx="1300" cy="1060" r="300"/>
+<text class="method-tag" x="1000.0" y="744.0" text-anchor="start">VÒNG 08 B · TUMBLR</text>
+<text class="w-sub" x="1000.0" y="764.0" text-anchor="start">→ M2 thiết kế</text>
+<path class="edge-chain" d="M1197.0,867.4 Q1300.0,730.0 1402.4,866.6" marker-end="url(#ar-chain)"/>
+<path class="edge-chain" d="M1492.6,957.0 Q1630.0,1060.0 1493.4,1162.4" marker-end="url(#ar-chain)"/>
+<path class="edge-chain" d="M1403.0,1252.6 Q1300.0,1390.0 1197.6,1253.4" marker-end="url(#ar-chain)"/>
+<path class="edge-chain" d="M1107.4,1163.0 Q970.0,1060.0 1106.6,957.6" marker-end="url(#ar-chain)"/>
+<line class="edge-spoke" x1="1203.8" y1="963.8" x2="1232.1" y2="992.1" marker-end="url(#ar-chain)"/>
+<line class="edge-spoke" x1="1396.2" y1="963.8" x2="1367.9" y2="992.1" marker-end="url(#ar-chain)"/>
+<line class="edge-spoke" x1="1396.2" y1="1156.2" x2="1367.9" y2="1127.9" marker-end="url(#ar-chain)"/>
+<line class="edge-spoke" x1="1203.8" y1="1156.2" x2="1232.1" y2="1127.9" marker-end="url(#ar-chain)"/>
+<circle class="node-asset" cx="1158.6" cy="918.6" r="62"/>
+<circle class="dot dot-tumblr" cx="1158.6" cy="888.6" r="5.5"/>
+<text class="w-name" x="1158.6" y="920.6" text-anchor="middle">Nút ngoài 1</text>
+<text class="w-sub" x="1158.6" y="938.6" text-anchor="middle">T2 · tumblr.com</text>
+<text class="w-kind" x="1158.6" y="956.6" text-anchor="middle">BLOG</text>
+<circle class="node-asset" cx="1441.4" cy="918.6" r="62"/>
+<circle class="dot dot-tumblr" cx="1441.4" cy="888.6" r="5.5"/>
+<text class="w-name" x="1441.4" y="920.6" text-anchor="middle">Nút ngoài 2</text>
+<text class="w-sub" x="1441.4" y="938.6" text-anchor="middle">T2 · tumblr.com</text>
+<text class="w-kind" x="1441.4" y="956.6" text-anchor="middle">BLOG</text>
+<circle class="node-asset" cx="1441.4" cy="1201.4" r="62"/>
+<circle class="dot dot-tumblr" cx="1441.4" cy="1171.4" r="5.5"/>
+<text class="w-name" x="1441.4" y="1203.4" text-anchor="middle">Nút ngoài 3</text>
+<text class="w-sub" x="1441.4" y="1221.4" text-anchor="middle">T2 · tumblr.com</text>
+<text class="w-kind" x="1441.4" y="1239.4" text-anchor="middle">BLOG</text>
+<circle class="node-asset" cx="1158.6" cy="1201.4" r="62"/>
+<circle class="dot dot-tumblr" cx="1158.6" cy="1171.4" r="5.5"/>
+<text class="w-name" x="1158.6" y="1203.4" text-anchor="middle">Nút ngoài 4</text>
+<text class="w-sub" x="1158.6" y="1221.4" text-anchor="middle">T2 · tumblr.com</text>
+<text class="w-kind" x="1158.6" y="1239.4" text-anchor="middle">BLOG</text>
+<circle class="node-main" cx="1300" cy="1060" r="92"/>
+<text class="m-eye" x="1300.0" y="1040.0" text-anchor="middle">NÚT GIỮA · T1 · BLOG</text>
+<text class="m-name" x="1300.0" y="1068.0" text-anchor="middle">tumblr.com</text>
+<text class="m-meta" x="1300.0" y="1092.0" text-anchor="middle">1 link → M2</text>
+<path class="edge-back edge-hub" d="M466,1060 H160 V92 H392" marker-end="url(#ar-back)"/>
+<path class="edge-back edge-hub" d="M1394,1060 H1885 V-92 H1060 V36" marker-end="url(#ar-back)"/>
+<rect class="node-risk node-dash" x="455" y="1404" width="210" height="64" rx="12"/>
+<text class="r-eye" x="560.0" y="1430.0" text-anchor="middle">T3 · PBN / GSA</text>
+<text class="r-sub" x="560.0" y="1452.0" text-anchor="middle">→ 4 nút ngoài</text>
+<path class="edge-risk edge-dash" d="M560,1404 V1366" marker-end="url(#ar-risk)"/>
+<rect class="node-risk node-dash" x="1195" y="1404" width="210" height="64" rx="12"/>
+<text class="r-eye" x="1300.0" y="1430.0" text-anchor="middle">T3 · PBN / GSA</text>
+<text class="r-sub" x="1300.0" y="1452.0" text-anchor="middle">→ 4 nút ngoài</text>
+<path class="edge-risk edge-dash" d="M1300,1404 V1366" marker-end="url(#ar-risk)"/>
+<rect class="band" x="180" y="1560" width="1181" height="96" rx="16"/>
+<rect class="node-ent" x="196" y="1584" width="210" height="48" rx="24"/>
+<circle class="dot dot-canva" cx="218" cy="1608" r="6"/>
+<text class="ent-tx" x="232.0" y="1613.0" text-anchor="start">Canva Website</text>
+<text class="ent-kind" x="390.0" y="1613.0" text-anchor="end">PARASITE</text>
+<rect class="node-ent" x="416" y="1584" width="210" height="48" rx="24"/>
+<circle class="dot dot-pinterest" cx="438" cy="1608" r="6"/>
+<text class="ent-tx" x="452.0" y="1613.0" text-anchor="start">Pinterest</text>
+<text class="ent-kind" x="610.0" y="1613.0" text-anchor="end">PARASITE ẢNH</text>
+<rect class="node-ent" x="636" y="1584" width="151" height="48" rx="24"/>
+<circle class="dot dot-aboutme" cx="658" cy="1608" r="6"/>
+<text class="ent-tx" x="672.0" y="1613.0" text-anchor="start">About.me</text>
+<text class="ent-kind" x="771.0" y="1613.0" text-anchor="end">HỒ SƠ</text>
+<rect class="node-ent" x="797" y="1584" width="137" height="48" rx="24"/>
+<circle class="dot dot-homify" cx="819" cy="1608" r="6"/>
+<text class="ent-tx" x="833.0" y="1613.0" text-anchor="start">Homify</text>
+<text class="ent-kind" x="918.0" y="1613.0" text-anchor="end">HỒ SƠ</text>
+<rect class="node-ent" x="944" y="1584" width="130" height="48" rx="24"/>
+<circle class="dot dot-houzz" cx="966" cy="1608" r="6"/>
+<text class="ent-tx" x="980.0" y="1613.0" text-anchor="start">Houzz</text>
+<text class="ent-kind" x="1058.0" y="1613.0" text-anchor="end">HỒ SƠ</text>
+<rect class="node-ent" x="1084" y="1584" width="261" height="48" rx="24"/>
+<circle class="dot dot-gs" cx="1106" cy="1608" r="6"/>
+<text class="ent-tx" x="1120.0" y="1613.0" text-anchor="start">Google Site thương hiệu</text>
+<text class="ent-kind" x="1329.0" y="1613.0" text-anchor="end">HỒ SƠ</text>
+<rect class="node-money" x="1450" y="1576" width="260" height="64" rx="12"/>
+<text class="q-name" x="1580.0" y="1603.0" text-anchor="middle">Trang chủ</text>
+<text class="q-slug" x="1580.0" y="1625.0" text-anchor="middle">fhomesg.vn/</text>
+<path class="edge-ent" d="M1359,1608 H1440" marker-end="url(#ar-ent)"/>
+<rect class="node-asset" x="1450" y="1428" width="260" height="96" rx="12"/>
+<circle class="dot dot-chatgpt" cx="1474" cy="1452" r="6"/>
+<rect class="pill pill-tool" x="1486" y="1442" width="86" height="20" rx="10"/>
+<text class="pill-tx" x="1529.0" y="1456.0" text-anchor="middle">MINI TOOL</text>
+<text class="a-name" x="1580.0" y="1484.0" text-anchor="middle">ChatGPT App · T1</text>
+<text class="a-dom" x="1580.0" y="1504.0" text-anchor="middle">chatgpt.com/plugins</text>
+<path class="edge-back" d="M1580,1524 V1568" marker-end="url(#ar-back)"/>
+    </svg>
+  </div>
+  <p class="hint">↔ Cuộn ngang để xem hết sơ đồ trên màn hình nhỏ.</p>
+  <ul class="legend">
+    <li><svg width="46" height="14" aria-hidden="true"><line class="lg-back" x1="1" y1="7" x2="37" y2="7"/><path class="ah-back" d="M37,2.5 L45,7 L37,11.5 Z"/></svg><span><b>Backlink về money site</b></span></li>
+    <li><svg width="46" height="14" aria-hidden="true"><line class="lg-chain" x1="1" y1="7" x2="37" y2="7"/><path class="ah-chain" d="M37,3 L45,7 L37,11 Z"/></svg><span><b>Link stack / link trong vòng</b></span></li>
+    <li><svg width="46" height="14" aria-hidden="true"><line class="lg-risk" x1="1" y1="7" x2="37" y2="7"/><path class="ah-risk" d="M37,3 L45,7 L37,11 Z"/></svg><span><b>Textlink · T3</b> — chỉ textlink gần theme trỏ thẳng money</span></li>
+    <li><svg width="46" height="14" aria-hidden="true"><line class="lg-ent" x1="1" y1="7" x2="37" y2="7"/><path class="ah-ent" d="M37,3 L45,7 L37,11 Z"/></svg><span><b>Entity</b> — trỏ trang chủ</span></li>
+    <li><span class="lg-pills">MINI TOOL · MINISITE · BLOG · PARASITE · HỒ SƠ</span><span><b>Dạng tài sản</b></span></li>
+    <li><svg width="46" height="14" aria-hidden="true"><rect class="lg-main" x="4" y="1" width="38" height="12" rx="4"/></svg><span><b>Ô nền đậm</b> — URL chính · nút giữa vòng</span></li>
+  </ul>
+</main>
+</body>
+</html>
