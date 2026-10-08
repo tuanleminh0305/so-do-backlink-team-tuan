@@ -57,6 +57,11 @@ body{margin:0; background:var(--brand-bg); color:var(--brand-text);
 .dg .edge-back{ stroke:var(--brand-navy);   stroke-width:2.6; fill:none; stroke-linecap:round}
 .dg .edge-chain{stroke:var(--brand-accent); stroke-width:1.9; fill:none; stroke-linecap:round}
 .dg .edge-int{  stroke:var(--brand-muted);  stroke-width:2;   fill:none; stroke-linecap:round; stroke-dasharray:7 5}
+.dg .edge-tl{   stroke:var(--brand-cyan);   stroke-width:2.2; fill:none; stroke-linecap:round; stroke-dasharray:2 5}
+.dg .f-cyan{fill:var(--brand-cyan)}
+.dg .tl-tx{fill:var(--brand-muted); font-family:var(--brand-heading); font-size:10.5px; font-weight:700; letter-spacing:.6px}
+.lg-tl{stroke:var(--brand-cyan); stroke-width:2.2; stroke-linecap:round; stroke-dasharray:2 5; fill:none}
+.ah-cyan{fill:var(--brand-cyan)}
 .dg .f-navy{fill:var(--brand-navy)} .dg .f-accent{fill:var(--brand-accent)} .dg .f-muted{fill:var(--brand-muted)}
 .dg .method-tag{fill:var(--brand-accent); font-family:var(--brand-heading); font-size:17px; font-weight:800; letter-spacing:1.2px}
 .dg .lb-tier{fill:var(--brand-accent); font-family:var(--brand-heading); font-size:11.5px; font-weight:700; letter-spacing:1.3px}
@@ -103,12 +108,13 @@ body{margin:0; background:var(--brand-bg); color:var(--brand-text);
   </header>
 
   <div class="canvas">
-    <svg class="dg" viewBox="0 -52 1240 852" role="img" aria-labelledby="fh-title fh-desc">
+    <svg class="dg" viewBox="0 -52 1290 852" role="img" aria-labelledby="fh-title fh-desc">
       <title id="fh-title">Mô hình TAS — sơ đồ link stack hai tier cho FHome</title>
-      <desc id="fh-desc">Tầng đích gồm năm URL của fhomesg.vn: thiết kế nội thất chung cư, thi công nội thất chung cư (URL chính), trang chủ, thiết kế chung cư 3 phòng ngủ, giá thiết kế thi công nội thất chung cư. Tier 1 ba tài sản nối chuỗi ngang: Cloudflare Pages (tool thước lỗ ban, ẩn danh) sang Google Sites (minisite FHome) sang bài GP mới trên noithattana.net (Nội Thất Tân Á). Cloudflare trỏ thiết kế và thi công; Google Sites trỏ thi công và trang chủ; GP trỏ trang chủ, 3 phòng ngủ và báo giá. Tier 2: GitHub Pages (tool màu hợp mệnh, ẩn danh) nuôi Cloudflare và Google Sites, giữ một link về thiết kế; Substack (bài chuyên gia) nuôi Google Sites và GP, giữ một link về thi công. GSA và PBN chỉ đẩy vào GitHub Pages và Cloudflare. Tổng 15 link: 9 về money site, 6 link stack.</desc>
+      <desc id="fh-desc">Tầng đích gồm năm URL của fhomesg.vn: thiết kế nội thất chung cư, thi công nội thất chung cư (URL chính), trang chủ, thiết kế chung cư 3 phòng ngủ, giá thiết kế thi công nội thất chung cư. Tier 1 ba tài sản nối chuỗi ngang: Cloudflare Pages (tool thước lỗ ban, ẩn danh) sang Google Sites (minisite FHome) sang bài GP mới trên noithattana.net (Nội Thất Tân Á). Cloudflare trỏ thiết kế và thi công; Google Sites trỏ thi công và trang chủ; GP trỏ trang chủ, 3 phòng ngủ và báo giá. Tier 2: GitHub Pages (tool màu hợp mệnh, ẩn danh) nuôi Cloudflare và Google Sites, giữ một link về thiết kế; Substack (bài chuyên gia) nuôi Google Sites và GP, giữ một link về thi công. Textlink báo xa theme đẩy vào GitHub Pages và Cloudflare; textlink báo cùng theme trỏ thẳng các trang đích. Tổng 15 link: 9 về money site, 6 link stack.</desc>
       <defs>
         <marker id="ah-n" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.4" markerHeight="5.4" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 Z" class="f-navy"></path></marker>
         <marker id="ah-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 Z" class="f-accent"></path></marker>
+        <marker id="ah-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 Z" class="f-cyan"></path></marker>
         <marker id="ah-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 Z" class="f-muted"></path></marker>
       </defs>
       <text class="method-tag" x="14" y="-24">MÔ HÌNH TAS</text>
@@ -124,9 +130,12 @@ body{margin:0; background:var(--brand-bg); color:var(--brand-text);
       <text class="lb-tier" x="16" y="546">TIER 2</text><text class="lb-sub" x="16" y="566">nuôi tier 1 · 2</text>
       <text class="lb-tier" x="16" y="728">NGUỒN ĐẨY</text><text class="lb-sub" x="16" y="748">ngoài hệ tài sản</text>
 
-      <!-- GSA/PBN → GitHub, Cloudflare -->
+      <!-- Textlink xa theme → GitHub, Cloudflare · cùng theme → thẳng trang đích -->
       <path class="edge-int" d="M515,690 C515,644.9 515,653.1 515,608" marker-end="url(#ah-m)"></path>
       <path class="edge-int" d="M395,718 C300,718 250,700 250,368" marker-end="url(#ah-m)"></path>
+      <text class="tl-tx" x="186" y="760">xa theme → tool</text>
+      <path class="edge-tl" d="M635,740 L1266,740 L1266,92 L1228,92" marker-end="url(#ah-c)"></path>
+      <text class="tl-tx" x="1252" y="732" text-anchor="end">cùng theme → thẳng 5 trang đích</text>
       <!-- Cloudflare → Google Sites · M1 · M2 -->
       <path class="edge-chain" d="M480,314 C511.5,314 518.5,314 550,314" marker-end="url(#ah-a)"></path>
       <path class="edge-back" d="M340,260 C340,196.2 430,207.8 430,144" marker-end="url(#ah-n)"></path>
@@ -234,8 +243,8 @@ body{margin:0; background:var(--brand-bg); color:var(--brand-text);
       </g>
       <g>
         <rect class="vb-box vb-box--src" x="395" y="690" width="240" height="76" rx="10"></rect>
-        <text class="vb-name" x="411" y="724">GSA / PBN</text>
-        <text class="vb-meta" x="411" y="756">nguồn đẩy ngoài</text>
+        <text class="vb-name" x="411" y="724">Textlink báo</text>
+        <text class="vb-meta" x="411" y="756">sidebar bài báo · nguồn ngoài</text>
       </g>
     </svg>
   </div>
@@ -252,7 +261,11 @@ body{margin:0; background:var(--brand-bg); color:var(--brand-text);
     </li>
     <li>
       <svg width="46" height="14" aria-hidden="true" focusable="false"><line class="lg-int" x1="1" y1="7" x2="37" y2="7"></line><path class="ah-muted" d="M37,3 L45,7 L37,11 Z"></path></svg>
-      <span><b>Nguồn đẩy ngoài</b> · GSA/PBN, chỉ bắn vào tài sản ẩn danh</span>
+      <span><b>Textlink báo xa theme</b> · vào 2 tool ẩn danh A, D</span>
+    </li>
+    <li>
+      <svg width="46" height="14" aria-hidden="true" focusable="false"><line class="lg-tl" x1="1" y1="7" x2="37" y2="7"></line><path class="ah-cyan" d="M37,3 L45,7 L37,11 Z"></path></svg>
+      <span><b>Textlink báo cùng theme</b> · thẳng các trang đích, ngoài 9 link của cụm</span>
     </li>
   </ul>
 
@@ -260,8 +273,10 @@ body{margin:0; background:var(--brand-bg); color:var(--brand-text);
     <h3>Điều kiện và việc chưa chốt</h3>
     <ul>
       <li>Mỗi tài sản có 1 bài chính đi link và ít nhất 4 bài support trỏ internal link về bài chính. Internal link trong tài sản không vẽ lên sơ đồ.</li>
-      <li>Tài sản đã index mới đặt link ra. Substack chờ hết giai đoạn noindex của tài khoản mới. GSA/PBN chạy sau cùng.</li>
-      <li>Google Sites là site mới, khác Google Site thương hiệu đang làm entity, vì đường juice từ GSA đi qua nó.</li>
+      <li>Tài sản đã index mới đặt link ra. Substack chờ hết giai đoạn noindex của tài khoản mới. Textlink chạy sau cùng, sau khi ghi verdict gate #25.</li>
+      <li>Textlink: xét theme theo từng URL bài (title, URL, đoạn quanh link). Cùng theme → thẳng trang đích, tính vào tỷ lệ anchor của money site. Xa theme nhưng cùng lĩnh vực nhà ở, phong thủy → tool A hoặc D. Lạc chủ đề → không mua. Không đặt GSA/PBN dưới bài báo.</li>
+      <li>GSA/PBN là phương án dự phòng: chỉ thêm sau mốc kiểm ngày 30 nếu tool chưa index hoặc chưa nhích hạng, và chỉ bắn vào D.</li>
+      <li>Google Sites là site mới, khác Google Site thương hiệu đang làm entity, vì juice từ tầng đẩy (textlink, GSA dự phòng) đi qua nó.</li>
       <li><b>Chỉ số trên ô tài sản:</b> DR Ahrefs của nền và traffic organic Việt Nam/tháng của cả nền (Ahrefs, 08/10/2026), không phải của tài sản FHome. * noithattana.net: DR Ahrefs 29/09, traffic Semrush Worldwide 07/10 (đang tăng 20%).</li>
       <li><b>Đã xác nhận 08/10:</b> Bài GP trên noithattana.net trỏ về 3 đích, giống ô The Architects Diary của ViBIM, vượt luật 2 link về money của web 2.0.</li>
       <li>Chưa chốt: tên Google Site và Substack, topic từng tài sản, anchor. noithattana.net đã có bài GP đợt 2 nên bài mới không tạo referring domain mới.</li>
